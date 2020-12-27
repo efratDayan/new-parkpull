@@ -48,6 +48,7 @@
     <Compile Include="parkingRentalRequests_DTO.cs" />
     <Compile Include="RentalOffersForParkingDTO.cs" />
     <Compile Include="RentalOption.cs" />
+    <Compile Include="RentalOptionsForRequest.cs" />
     <Compile Include="rentedParkingDTO.cs" />
     <Compile Include="UserDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
