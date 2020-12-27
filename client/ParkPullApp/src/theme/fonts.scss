@@ -1,0 +1,25 @@
+// in the fonts.scss file, add the font-face for each font file
+@font-face {
+    font-family: 'FbMatritsaM';
+    src: url('../assets/fonts/KBMYQH+FbMatritsaNarrow-Medium.ttf');
+    font-weight: 200;
+    font-style: normal;
+ }
+ @font-face {
+    font-family: 'FbMatritsaL';
+    src: url('../assets/fonts/KBMYQH+FbMatritsaNarrow-Light.ttf');
+    font-weight: 200;
+    font-style: normal;
+ }
+ @font-face {
+    font-family: 'FbMatritsaB';
+    src: url('../assets/fonts/KBMYQH+FbMatritsaNarrow-Bold.ttf');
+    font-weight: 200;
+    font-style: normal;
+ }
+ @font-face {
+    font-family: 'FbMatritsaR';
+    src: url('../assets/fonts/KBMYQH+FbMatritsaNarrow-Regular.ttf');
+    font-weight: 200;
+    font-style: normal;
+ }

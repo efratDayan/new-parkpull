@@ -1,0 +1,85 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/*Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+// @import "~@ionic/theme/dark";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+@import "src/theme/fonts.scss";
+
+//The good Bg image!!
+ion-content{
+    --background: url('assets/bg.png');
+}
+body{
+    direction: rtl;
+}
+.toolbar-title-default.md.in-toolbar.hydrated{
+    --background: #09091E !important;
+    z-index: 100;
+    min-height: 93px;
+}
+toolbar-container{
+    min-height: 180px;
+}
+.img{
+     width: 80px;
+     margin-left: 5%;
+}
+
+.title{
+    font-family: heebo;
+    font-size: xx-large;
+    color: red;
+    --min-height: 120px !important;
+}  
+
+ion-item{
+    background-color: transparent;
+}
+
+.text, h3 {
+    color: #2C388A;
+    font-family: FbMatritsaM;
+    font-size: 20px;
+    margin: 20px;
+}
+ion-input{
+    -webkit-background-composite: var(--background);
+    --background: #09091E;
+}
+.Length{
+    width: 50%;
+}
+
+.btnForAll{
+     
+    color: #ffffff; 
+    font-family: FbMatritsaM; 
+    font-size: 16px; 
+    --background: #8880B8; 
+    --border-radius:50px; 
+    --padding-bottom:5px;
+    --padding-top:5px;
+}
+
