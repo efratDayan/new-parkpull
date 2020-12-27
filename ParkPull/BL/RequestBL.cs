@@ -11,7 +11,7 @@ namespace BL
 {
     public class RequestBL
     {
-        public  List<Models.RentalOption> AddRequest(Models.parkingRentalRequestsDTO request)
+        public RentalOptionsForRequest AddRequest(Models.parkingRentalRequestsDTO request)
         {
             using (parkPullDBEntities db = new parkPullDBEntities())
             {
@@ -19,9 +19,10 @@ namespace BL
                 db.parkingRentalRequests.Add(dalRequest);
                 db.SaveChanges();
 
-                List<Models.RentalOption> offers = GetOptionalOffers(db.parkingRentalRequests.Include(c=>c.Car).ToList().Last());
-                
-                return offers;
+                RentalOptionsForRequest options = new RentalOptionsForRequest();
+                options.RequestId = dalRequest.requestCode;
+                options.RentalOptions = GetOptionalOffers(db.parkingRentalRequests.Include(c=>c.Car).ToList().Last());
+                return options;
             }
         }
 

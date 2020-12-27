@@ -16,4 +16,9 @@ export class RequestService {
     return this.http.post<RentalOption[]>(environment.url+'request/post', request);
   }
 
+   setParking(requestId,parkingId)
+   {
+     
+   }
+
 }
