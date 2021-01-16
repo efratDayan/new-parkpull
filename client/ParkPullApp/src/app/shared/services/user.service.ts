@@ -1,5 +1,5 @@
 ﻿import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { User } from '../models/user.model';
 import { environment } from 'src/environments/environment';
@@ -22,6 +22,13 @@ export class UserService {
 
   update(user: User) {
     return this.http.put(environment.url+'user/' + user.id, user);
+  }
+
+  findUser(name:string,password:string){
+    const params = new HttpParams()
+   .set('name', name)
+   .set('password', password);
+return this.http.get(environment.url+'user/FindUser',{params:params})
   }
 
   delete(id: number) {

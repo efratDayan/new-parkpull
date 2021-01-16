@@ -12,30 +12,25 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Parking
+    public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Parking()
+        public Users()
         {
-            this.RentalOffersForParkings = new HashSet<RentalOffersForParking>();
-            this.Extensions = new HashSet<Extension>();
+            this.Cars = new HashSet<Cars>();
+            this.Parkings = new HashSet<Parkings>();
         }
     
-        public int parkingCode { get; set; }
         public int userCode { get; set; }
         public string Name { get; set; }
-        public Nullable<double> widthPoint { get; set; }
-        public Nullable<double> lengthPoint { get; set; }
-        public Nullable<double> parkWidth { get; set; }
-        public Nullable<double> parkLength { get; set; }
-        public Nullable<double> parkHeight { get; set; }
-        public Nullable<double> parkWeight { get; set; }
-        public Nullable<double> price { get; set; }
+        public string Tell { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string userAdress { get; set; }
     
-        public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RentalOffersForParking> RentalOffersForParkings { get; set; }
+        public virtual ICollection<Cars> Cars { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Extension> Extensions { get; set; }
+        public virtual ICollection<Parkings> Parkings { get; set; }
     }
 }

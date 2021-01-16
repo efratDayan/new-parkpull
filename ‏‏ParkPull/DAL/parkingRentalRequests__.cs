@@ -12,27 +12,30 @@ namespace DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class rentedParking
+    public partial class parkingRentalRequests__
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public rentedParking()
+        public parkingRentalRequests__()
         {
-            this.Opinions = new HashSet<Opinion>();
+            this.daysAweekForRequest = new HashSet<daysAweekForRequest>();
+            this.rentedParkings = new HashSet<rentedParkings>();
+            this.Extensions = new HashSet<Extensions>();
         }
     
-        public int rentedParkingCode { get; set; }
-        public int offerCode { get; set; }
         public int requestCode { get; set; }
-        public int dayOfWeekForOffer { get; set; }
-        public int dayOfWeekForRequest { get; set; }
+        public int carCode { get; set; }
         public System.DateTime startDateForRequest { get; set; }
         public Nullable<System.DateTime> endDateForRequest { get; set; }
         public System.TimeSpan startHourForRequest { get; set; }
         public Nullable<System.TimeSpan> endHourForRequest { get; set; }
+        public string requestAdress { get; set; }
     
-        public virtual daysAweekForOffer daysAweekForOffer { get; set; }
-        public virtual daysAweekForRequest daysAweekForRequest { get; set; }
+        public virtual Cars Cars { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Opinion> Opinions { get; set; }
+        public virtual ICollection<daysAweekForRequest> daysAweekForRequest { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<rentedParkings> rentedParkings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Extensions> Extensions { get; set; }
     }
 }

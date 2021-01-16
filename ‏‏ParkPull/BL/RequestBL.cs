@@ -13,7 +13,7 @@ namespace BL
     {
         public RentalOptionsForRequest AddRequest(Models.parkingRentalRequestsDTO request)
         {
-            using (parkPullDBEntities db = new parkPullDBEntities())
+            using (parkPullDBEntities2 db = new parkPullDBEntities2())
             {
                 var dalRequest = Converters.parkingRentalRequestsConverter.ConvertparkingRentalRequestsToDAL(request);
                 db.parkingRentalRequests.Add(dalRequest);
@@ -28,7 +28,7 @@ namespace BL
 
         private List<Models.RentalOption> GetOptionalOffers(DAL.parkingRentalRequest request)
         {
-            using (parkPullDBEntities db = new parkPullDBEntities())
+            using (parkPullDBEntities2 db = new parkPullDBEntities2())
             {
                 List<Models.RentalOption> goodOffers = new List<Models.RentalOption>();
                 foreach (var offer in db.RentalOffersForParkings)

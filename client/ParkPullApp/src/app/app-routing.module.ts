@@ -38,7 +38,15 @@ const routes: Routes = [
   {
     path: 'result/:res',
     loadChildren: () => import('./pages/result/result.module').then( m => m.ResultPageModule)
+  },  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'login-with-name',
+    loadChildren: () => import('./pages/login-with-name/login-with-name.module').then( m => m.LoginWithNamePageModule)
+  },
+
 
 
 

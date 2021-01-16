@@ -20,7 +20,7 @@ namespace BL.Converters
                 carNumber=car.carNumber,
                 carWeight=car.carWeight,
                 carWidth=car.carWidth,
-                userCode=car.userCode.Value
+                userCode=car.userCode
             };
         }
 
@@ -29,11 +29,11 @@ namespace BL.Converters
             return new CarDTO
             {
                 carCode = car.carCode,
-                carHeight = car.carHeight,
-                carLength = car.carLength,
-                carNumber = car.carNumber,
-                carWeight = car.carWeight,
-                carWidth = car.carWidth,
+                carHeight = (double)car.carHeight,
+                carLength =(double)car.carLength,
+                carNumber =car.carNumber,
+                carWeight =(double)car.carWeight,
+                carWidth = (double)car.carWidth,
                 userCode = car.userCode
             };
         }

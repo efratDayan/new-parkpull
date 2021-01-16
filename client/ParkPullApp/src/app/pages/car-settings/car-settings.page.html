@@ -1,87 +1,75 @@
 <body style="background-image: url('assets/bg.png'); direction: rtl;">
- <!-- <img style="z-index: -1;" src="assets/bg.png" alt=""> -->
- <ion-header style="background-color: transparent !important;">
-    <ion-toolbar>
-      <ion-title>
-        <div style="display: inline; text-align: center;">
-          <ion-button style="position:relative; right: 0;">
-            <ion-icon name="chevron-forward-outline"></ion-icon>
-          </ion-button>
-          <ion-avatar>
-            <img class="img" src="assets/user.png" onclick="" style="margin-right: 2vh; position:absolute; left: 0;" />
-          </ion-avatar>
-        </div>
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-<ion-content class="etzuv">
-    
-    <form [formGroup]="carSettingsForm" novalidate (ngSubmit)="carSetting(carSettingsForm)">
-        <ion-grid>
-            <ion-row color="primary" justify-content-center>
-                <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-                    <div text-center>
-                        <h3>הכנס פרטי רכב</h3>
-                    </div>
-                    <div padding>
-                        <ion-item>
+    <!-- <img style="z-index: -1;" src="assets/bg.png" alt=""> -->
+    <ion-header style="background-color: transparent !important;">
+        <ion-toolbar>
+            <ion-title>
+                <div style="display: inline; text-align: center;">
+                    <ion-button style="position:relative; right: 0;">
+                        <ion-icon name="chevron-forward-outline"></ion-icon>
+                    </ion-button>
+                    <ion-avatar>
+                        <img class="img" src="assets/user.png" onclick="" style="margin-right: 2vh; position:absolute; left: 0;" />
+                    </ion-avatar>
+                </div>
+            </ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content class="etzuv">
+
+        <form [formGroup]="carSettingsForm" novalidate (ngSubmit)="carSetting(carSettingsForm)">
+            <ion-grid>
+                <ion-row color="primary" justify-content-center>
+                    <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+                        <div text-center>
+                            <h3>הכנס פרטי רכב</h3>
+                        </div>
+                        <div padding>
+
                             <ion-item>
-                                <ion-label></ion-label>
+                                <ion-input formControlName="Length" name="Length" type="text" placeholder="אורך" ngModel required></ion-input>
                             </ion-item>
-                            <ion-grid>
-                                <ion-row color="primary" justify-content-center>
-                                    <ion-col align-self-center size-md="4" size-lg="3" size-xs="10">
+                            <ion-item>
+                                <ion-input formControlName="Width" name="width" type="text" placeholder="רוחב" ngModel required></ion-input>
+                            </ion-item>
 
-                                        <ion-label></ion-label>
-                                        <div style="display: inline-block;">
-                                        <ion-item>
-                                            <ion-input formControlName="Length" name="Length" type="text" placeholder="אורך" ngModel required></ion-input>
-                                        </ion-item>
-                                        <ion-item>
-                                            <ion-input formControlName="width" name="width" type="text" placeholder="רוחב" ngModel required></ion-input>
-                                        </ion-item>
-                                    </div>
-                                        <ion-item>
-                                            <ion-input formControlName="height" name="height" type="text" placeholder="גובה" ngModel required></ion-input>
-                                        </ion-item>
-                                        <ion-item>
-                                            <ion-input formControlName="Weight" name="Weight" type="text" placeholder="משקל" ngModel required></ion-input>
-                                        </ion-item>
-                                    </ion-col>
-                                </ion-row>
-                            </ion-grid>
-                        </ion-item>
-                        
-                        <ion-item>
-                            <!-- <ion-input name="carType" type="" placeholder="your@email.com" ngModel required></ion-input> -->
+                            <ion-item>
+                                <ion-input formControlName="Height" name="height" type="text" placeholder="גובה" ngModel required></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-input formControlName="Weight" name="Weight" type="text" placeholder="משקל" ngModel required></ion-input>
+                            </ion-item>
 
-                            <ion-label>סוג הרכב</ion-label>
-                            <ion-select value="brown" okText="Okay" cancelText="Dismiss" formControlName="carType">
-                                <ion-select-option value="private">פרטי</ion-select-option>
-                                <ion-select-option value="tractor">טרקטור</ion-select-option>
-                                <ion-select-option value="truck">משאית</ion-select-option>
-                                <ion-select-option value="trailer">טריילר</ion-select-option>
-                                <ion-select-option value="motorcycle">קטנועית</ion-select-option>
-                            </ion-select>
 
-                        </ion-item>
-                     
-                        <ion-item>
-                            <ion-input formControlName="carNumber" name="CarNumber" type="text" placeholder="מספר רכב" ngModel required></ion-input>
-                        </ion-item>
-                    </div>
-                    <br>
-                    <div padding style="text-align: center;">
-                        <ion-button  class="btnForAll" size="large" type="submit"  routerLink="/park-settings">אין ברשותי רכב</ion-button>
+                            <ion-item>
+                                <!-- <ion-input name="carType" type="" placeholder="your@email.com" ngModel required></ion-input> -->
+
+                                <ion-label>סוג הרכב</ion-label>
+                                <ion-select value="brown" okText="Okay" cancelText="Dismiss" formControlName="carType">
+                                    <ion-select-option value="private">פרטי</ion-select-option>
+                                    <ion-select-option value="tractor">טרקטור</ion-select-option>
+                                    <ion-select-option value="truck">משאית</ion-select-option>
+                                    <ion-select-option value="trailer">טריילר</ion-select-option>
+                                    <ion-select-option value="motorcycle">קטנועית</ion-select-option>
+                                </ion-select>
+
+                            </ion-item>
+
+                            <ion-item>
+                                <ion-input formControlName="carNumber" name="CarNumber" type="text" placeholder="מספר רכב" ngModel required></ion-input>
+                            </ion-item>
+                        </div>
                         <br>
-                        <br>
-                        <ion-button  class="btnForAll" style="--background: #2C388A;" size="large" type="submit" [disabled]="carSettingsForm.invalid" routerLink="/park-settings" >  אישור  </ion-button>
-                        
-                    </div>
-                </ion-col>
-            </ion-row>
-        </ion-grid>
-    </form>
-   
-</ion-content>
+                        <div padding style="text-align: center;">
+                            <ion-button class="btnForAll" size="large" type="submit" routerLink="/park-settings">אין ברשותי רכב</ion-button>
+                            <br>
+                            <br>
+                            <ion-button class="btnForAll" style="--background: #2C388A;" size="large" type="submit" [disabled]="carSettingsForm.invalid" routerLink="/park-settings"> אישור </ion-button>
+
+                        </div>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </form>
+
+    </ion-content>
 </body>

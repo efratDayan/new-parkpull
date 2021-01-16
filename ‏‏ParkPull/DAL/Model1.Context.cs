@@ -13,10 +13,10 @@ namespace DAL
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class parkPullDBEntities : DbContext
+    public partial class parkPullDBEntities2 : DbContext
     {
-        public parkPullDBEntities()
-            : base("name=parkPullDBEntities")
+        public parkPullDBEntities2()
+            : base("name=parkPullDBEntities2")
         {
         }
     
@@ -26,14 +26,14 @@ namespace DAL
         }
     
         public virtual DbSet<Car> Cars { get; set; }
+        public virtual DbSet<daysAweekForOffer> daysAweekForOffers { get; set; }
         public virtual DbSet<daysAweekForRequest> daysAweekForRequests { get; set; }
         public virtual DbSet<Extension> Extensions { get; set; }
         public virtual DbSet<Opinion> Opinions { get; set; }
         public virtual DbSet<parkingRentalRequest> parkingRentalRequests { get; set; }
         public virtual DbSet<Parking> Parkings { get; set; }
+        public virtual DbSet<RentalOffersForParking> RentalOffersForParkings { get; set; }
         public virtual DbSet<rentedParking> rentedParkings { get; set; }
         public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<daysAweekForOffer> daysAweekForOffers { get; set; }
-        public virtual DbSet<RentalOffersForParking> RentalOffersForParkings { get; set; }
     }
 }

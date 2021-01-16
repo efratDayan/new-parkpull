@@ -10,7 +10,7 @@ namespace BL
 {
     public class CarBL
     {
-        parkPullDBEntities DB = new parkPullDBEntities();
+        parkPullDBEntities2 DB = new parkPullDBEntities2();
         public int AddCarToDB(CarDTO car)
         {
             Car newCar = new Car()
@@ -19,7 +19,8 @@ namespace BL
                carLength=car.carLength,
                carNumber=car.carNumber,
                carWeight=car.carWeight,
-               carWidth=car.carWidth
+               carWidth=car.carWidth,
+               userCode=car.userCode
             };
             DB.Cars.Add(newCar);
             DB.SaveChanges();

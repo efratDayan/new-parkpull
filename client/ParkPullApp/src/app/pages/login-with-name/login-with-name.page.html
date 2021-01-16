@@ -1,0 +1,19 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>loginWithName</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="LoginForm">
+        <ion-item>
+            <ion-input name="name" type="text" placeholder="שם משתמש" formControlName="name" (input)="findUser()"></ion-input>
+
+        </ion-item>
+        <ion-item>
+            <ion-input name="password" type="text" placeholder="סיסמא" (input)="findUser($event.target.value)"></ion-input>
+        </ion-item>
+        <div *ngIf="!correctPassword">שם משתמש או ססמא לא נכונים</div>
+        <ion-button size="large">היכנס</ion-button>
+    </form>
+</ion-content>

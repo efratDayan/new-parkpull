@@ -21,11 +21,24 @@ namespace API.Controllers
 
         [Route("AddUserToDB")]
         [HttpPost]
-        public IHttpActionResult AddUserToDB(UserDTO userDTO)
+        public int AddUserToDB(UserDTO userDTO)
         {
-            return Ok(UserBL.AddUserToDB(userDTO));
+            return UserBL.AddUserToDB(userDTO);
         }
 
-    
+
+        [Route("AddParkToDB")]
+        [HttpPost]
+        public int AddParkToDB(ParkingDTO parking)
+        {
+            return UserBL.AddParkToDB(parking);
+        }
+        [Route("FindUser")]
+        [HttpGet]
+        public bool FindUser(string name,string password)
+        {
+            return UserBL.FindUser(name, password);
+        }
+
     }
 }

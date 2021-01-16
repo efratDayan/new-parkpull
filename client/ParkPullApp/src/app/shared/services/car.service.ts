@@ -20,7 +20,7 @@ export class CarService {
     return this.http.get<number>(environment.url+'car')
    }
 
-   create(car: CarSettingsPage) {
+   create(car: Car) {
     return this.http.post(environment.url+'car/AddCarToDB', car);
   }
 }
