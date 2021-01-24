@@ -14,6 +14,6 @@
             <ion-input name="password" type="text" placeholder="סיסמא" (input)="findUser($event.target.value)"></ion-input>
         </ion-item>
         <div *ngIf="!correctPassword">שם משתמש או ססמא לא נכונים</div>
-        <ion-button size="large">היכנס</ion-button>
+        <ion-button size="large" [disabled]="!correctPassword" routerLink="/home">היכנס</ion-button>
     </form>
 </ion-content>

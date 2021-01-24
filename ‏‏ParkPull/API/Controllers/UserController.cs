@@ -40,5 +40,18 @@ namespace API.Controllers
             return UserBL.FindUser(name, password);
         }
 
+        [Route("GetParkDetails")]
+        [HttpGet]
+        public ParkingDTO GetParkDetails(int userCode)
+        {
+            return UserBL.GetParkDetails(userCode);
+        }
+        [Route("UpdatePark")]
+        [HttpPost]
+        public bool UpdatePark(ParkingDTO parking)
+        {
+            return UserBL.UpdatePark(parking);
+        }
+
     }
 }

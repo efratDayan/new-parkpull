@@ -16,7 +16,7 @@ namespace BL
             {
                 parkingCode = Parking.parkingCode,
                 userCode = Parking.userCode,
-                Name = Parking.Name,
+             
                 widthPoint = Parking.widthPoint,
                 lengthPoint = Parking.lengthPoint,
                 parkHeight = Parking.parkHeight,
@@ -33,7 +33,7 @@ namespace BL
             {
                 parkingCode = Parking.parkingCode,
                 userCode = Parking.userCode,
-                Name = Parking.Name,
+                
                 widthPoint = (double)Parking.widthPoint,
                 lengthPoint = (double)Parking.lengthPoint,
                 parkHeight = (double)Parking.parkHeight,

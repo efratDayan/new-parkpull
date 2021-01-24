@@ -23,5 +23,11 @@ export class CarService {
    create(car: Car) {
     return this.http.post(environment.url+'car/AddCarToDB', car);
   }
+  getCarDetails(userCode){
+return this.http.get<Car>(environment.url+'car/GetCarDetails?userCode='+userCode)
+  }
+  updateCar(car:Car){
+    return this.http.post(environment.url+'car/UpdateCar', car);
+  }
 }
 

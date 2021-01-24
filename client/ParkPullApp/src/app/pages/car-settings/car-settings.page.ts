@@ -49,7 +49,7 @@ export class CarSettingsPage implements OnInit {
       }as Car
        this.carService.create(car)
       .subscribe((res) => {
-        this.router.navigateByUrl('car-settings');
+        this.router.navigateByUrl('park-settings');
       });
     }
    

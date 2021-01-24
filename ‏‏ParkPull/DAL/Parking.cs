@@ -23,7 +23,6 @@ namespace DAL
     
         public int parkingCode { get; set; }
         public int userCode { get; set; }
-        public string Name { get; set; }
         public Nullable<double> widthPoint { get; set; }
         public Nullable<double> lengthPoint { get; set; }
         public Nullable<double> parkWidth { get; set; }

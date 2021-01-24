@@ -32,7 +32,7 @@ export class RegisterPage implements OnInit {
     if(form.valid)
     this.userService.create(form.value)
       .subscribe((res) => {
-        this.data.userCode=res
+        // this.data.userCode=res
         this.router.navigateByUrl('car-settings');
       });
   }

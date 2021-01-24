@@ -1,0 +1,66 @@
+<ion-content color="#09091E">
+    <ion-toolbar>
+        <ion-title>
+            <img class="img" src="assets/user.png" href="http://localhost:8100" />
+        </ion-title>
+    </ion-toolbar>
+    <form #form="ngForm" [formGroup]="parkSettingsForm" (ngSubmit)="Update(form)">
+        <ion-grid>
+            <ion-row color="primary" justify-content-center>
+                <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+                    <div text-center>
+                        <h3>הכנס פרטי חניה</h3>
+                    </div>
+                    <div padding>
+
+                        <ion-item>
+                            <ion-input formControlName="Length" name="Length" type="text" placeholder="אורך" value="{{this.park?.parkLength}}"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input formControlName="width" name="width" type="text" placeholder="רוחב" value="{{this.park?.parkWidth}}"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input formControlName="height" name="height" type="text" placeholder="גובה" value="{{this.park?.parkHeight}}"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input formControlName="Weight" name="Weight" type="text" placeholder="מקסימום משקל" value="{{this.park?.parkWeight}}"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input formControlName="Price" name="Price" type="text" placeholder="מחיר" value="{{this.park?.price}}"></ion-input>
+                        </ion-item>
+
+
+
+
+
+                        <ion-item>
+                            <ion-label></ion-label>
+                        </ion-item>
+                        <!-- <ion-grid>
+                              <ion-row color="primary" justify-content-center>
+                                  <ion-col align-self-center size-md="4" size-lg="3" size-xs="10"> -->
+
+                        <ion-label>מיקום החניה</ion-label>
+                        <ion-item>
+                            <ion-input formControlName="LengthPoint" name="LengthPoint" type="text" placeholder="נקודת אורך" value="{{   this.park?.lengthPoint}}"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-input formControlName="widthPoint" name="widthPoint" type="text" placeholder="נקודת רוחב" value="{{   this.park?.widthPoint}}"></ion-input>
+                        </ion-item>
+
+                        <!-- </ion-col>
+                              </ion-row>
+                          </ion-grid> -->
+
+
+                    </div>
+                    <div padding>
+                        <ion-button size="large" type="submit" routerLink="/private-profile">אישור</ion-button>
+
+
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </form>
+</ion-content>

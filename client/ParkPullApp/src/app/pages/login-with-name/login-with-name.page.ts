@@ -26,9 +26,6 @@ correctPassword;
  this.correctPassword=res ;
     });
   }
-  submit(){
-if(this.userService.findUser(this.LoginForm.controls.name.value,this.LoginForm.controls.password.value))
-console.log('happy password');
-  }
+
 
 }

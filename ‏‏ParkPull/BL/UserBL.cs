@@ -1,4 +1,5 @@
-﻿using DAL;
+﻿using BL.Converters;
+using DAL;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -35,10 +36,19 @@ namespace BL
                 parkLength=park.parkLength,
                 parkWeight=park.parkWeight,
                 parkWidth=park.parkWidth,
-                userCode=park.userCode
+                userCode=park.userCode,
+                price=park.price
             };
             DB.Parkings.Add(parking);
             DB.SaveChanges();
+            RentalOffersForParkingDTO rentalOffersForParking = new RentalOffersForParkingDTO()
+            {
+                parkingCode = parking.parkingCode,
+                startDateForOffer = new DateTime(),
+                startHourForOffer=new TimeSpan()
+            
+            };
+            DB.RentalOffersForParkings.Add(RentalOffersForParkingConverter.ConvertRentalOffersForParkingToDAL(rentalOffersForParking));
             return parking.userCode;
         }
 
@@ -60,6 +70,53 @@ namespace BL
           
        
                 return false;
+        }
+
+        public ParkingDTO GetParkDetails(int userCode)
+        {
+            var park = (from p in DB.Parkings
+                       where p.userCode == userCode
+                       select p).First();
+
+            var Park = new ParkingDTO()
+            {
+               parkingCode = park.parkingCode,
+               lengthPoint=(double)park.lengthPoint,
+               parkHeight= (double)park.parkHeight,
+               parkLength=(double)park.parkLength,
+               parkWeight=(double)park.parkWeight,
+               parkWidth=(double)park.parkWidth,
+               price=(double)park.price,
+               widthPoint=(double)park.widthPoint,
+               
+               
+
+
+
+            };
+            return Park;
+        }
+
+        public bool UpdatePark(ParkingDTO parking)
+        {
+            var park = (from p in DB.Parkings
+                       where parking.parkingCode == p.parkingCode
+                       select p).First();
+
+            if (park != null)
+            {
+                park.parkingCode = parking.parkingCode;
+               park.lengthPoint = parking.lengthPoint;
+               park.parkHeight =parking.parkHeight;
+               park.parkLength = parking.parkLength;
+               park.parkWeight = parking.parkWeight;
+               park.parkWidth =parking.parkWidth;
+               park.price = parking.price;
+               park.widthPoint = parking.widthPoint;
+
+                return true;
+            }
+            else return false;
         }
     }
 }

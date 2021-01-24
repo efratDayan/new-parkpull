@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Address } from 'ngx-google-places-autocomplete/objects/address';
 import { RentalRequest } from 'src/app/shared/models/rentalRequest.model';
 import { RequestService } from 'src/app/shared/services/request.service';
 
@@ -15,6 +16,11 @@ export class SearchPage implements OnInit {
     private router:Router) { }
 
   ngOnInit() {
+  }
+
+  handlestartingPointChange(a:Address)
+  {
+    console.log(a)
   }
 
   search(){

@@ -28,6 +28,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
   {
+    path: 'home',
+    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+  },
+  {
     path: 'search',
     loadChildren: () => import('./pages/search/search.module').then( m => m.SearchPageModule)
   },
@@ -38,14 +42,43 @@ const routes: Routes = [
   {
     path: 'result/:res',
     loadChildren: () => import('./pages/result/result.module').then( m => m.ResultPageModule)
-  },  {
+  },
+  {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'login-with-name',
     loadChildren: () => import('./pages/login-with-name/login-with-name.module').then( m => m.LoginWithNamePageModule)
+  },  {
+    path: 'car-settings-for-edit',
+    loadChildren: () => import('./pages/car-settings-for-edit/car-settings-for-edit.module').then( m => m.CarSettingsForEditPageModule)
   },
+  {
+    path: 'park-settings-for-edit',
+    loadChildren: () => import('./pages/park-settings-for-edit/park-settings-for-edit.module').then( m => m.ParkSettingsForEditPageModule)
+  },
+  {
+    path: 'add-car',
+    loadChildren: () => import('./pages/add-car/add-car.module').then( m => m.AddCarPageModule)
+  },
+  {
+    path: 'add-park',
+    loadChildren: () => import('./pages/add-park/add-park.module').then( m => m.AddParkPageModule)
+  },
+  {
+    path: 'history',
+    loadChildren: () => import('./pages/history/history.module').then( m => m.HistoryPageModule)
+  },
+  {
+    path: 'result-component',
+    loadChildren: () => import('./pages/result-component/result-component.module').then( m => m.ResultComponentPageModule)
+  },
+  {
+    path: 'result-inner-component',
+    loadChildren: () => import('./pages/result-inner-component/result-inner-component.module').then( m => m.ResultInnerComponentPageModule)
+  },
+
 
 
 

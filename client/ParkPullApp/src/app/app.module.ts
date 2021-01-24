@@ -11,15 +11,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserService } from './shared/services/user.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ResultComponentPage } from './pages/result-component/result-component.page';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ResultComponentPage
     
   
   ],
   entryComponents: [],
   imports: [
+   
     RouterModule, 
     ReactiveFormsModule,
     FormsModule,
@@ -29,6 +32,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
   HttpClientModule
   ],
   providers: [
+    
     StatusBar,
     SplashScreen,
     UserService,

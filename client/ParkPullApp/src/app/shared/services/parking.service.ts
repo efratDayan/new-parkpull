@@ -13,4 +13,12 @@ export class ParkingService {
   create(park: Parking) {
     return this.http.post(environment.url+'User/AddParkToDB', park);
   }
+
+  getParkDetails(userCode){
+    return this.http.get<Parking>(environment.url+'User/GetParkDetails?userCode='+userCode)
+  }
+
+  UpdatePark(park:Parking){
+    return this.http.post(environment.url+'User/UpdatePark', park);
+  }
 }

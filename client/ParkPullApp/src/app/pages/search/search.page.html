@@ -1,76 +1,69 @@
 <ion-content [fullscreen]="true">
-  <ion-list>
-   <form>
-     <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-item>
-            <ion-label>בחר רכב:</ion-label>
-            <ion-input type="number"  [(ngModel)]="request.carCode" name="carCode"> </ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
- <ion-row>
-   <ion-col>
-     <ion-item>
-       <ion-label>תאריך התחלה</ion-label>
-       <ion-datetime  type="ion-datetime"  display-format="MMM DD" picker-format="MMM DD" 
-        [(ngModel)]="request.startDateForRequest" name="startDate"></ion-datetime>
-     </ion-item>
-   </ion-col>
-   <ion-col>
-    <ion-item>
-      <ion-label> תאריך סיום
-      </ion-label>
-      <ion-datetime  type="ion-datetime"  display-format="MMM DD" picker-format="MMM DD" 
-       [(ngModel)]="request.endDateForRequest" name="endDate"></ion-datetime>
-    </ion-item>
-  </ion-col>
- </ion-row>
- <ion-row>
-   <ion-col>
-     <ion-item>
-       <ion-label position="floating">משעה</ion-label>
-       <ion-datetime  type="ion-datetime"  display-format="h:mm A" picker-format="h:mm A"
-        value="1990-02-19T07:43Z" [(ngModel)]="request.startHourForRequest" name="startTime"></ion-datetime>
-     </ion-item>
-   </ion-col>
- 
-   <ion-col>
-     <ion-item>
-       <ion-label position="floating">עד שעה</ion-label>
-       <ion-datetime  type="ion-datetime"  display-format="h:mm A" picker-format="h:mm A"
-        value="1990-02-19T07:43Z" [(ngModel)]="request.endHourForRequest" name="endTime"></ion-datetime>
-     </ion-item>
-   </ion-col>
- </ion-row>
- <ion-row>
-   <ion-col>
-     <ion-item>
-       <ion-label position="floating">כתובת</ion-label>
-       <ion-input [(ngModel)]="request.requestAdress" name="address"></ion-input>
-       <!-- <input ngx-google-places-autocomplete #placesRef="ngx-places"
-       (onAddressChange)="handlestartingPointChange($event)"  [(ngModel)]="areaRange.startingPoint" name="startingPoint" placeholder=""/>
-    --> </ion-item> 
-   </ion-col>
-   <ion-row>
-   <ion-col>
-    <ion-item>
-     
-      
-        <ion-label>ימים בשבוע</ion-label>
-        <ion-select name="days" multiple  [(ngModel)]="request.days" okText="Okay" cancelText="Dismiss">
-          <ion-select-option value="1">ראשון</ion-select-option>
-          <ion-select-option value="2">שני</ion-select-option>
-          <ion-select-option value="3">שלישי</ion-select-option>
-          <ion-select-option value="4">רביעי</ion-select-option>
-          <ion-select-option value="5">חמישי</ion-select-option>
-          <ion-select-option value="6">שישי</ion-select-option>
-          <ion-select-option value="7">שבת</ion-select-option>
-        </ion-select>
-      </ion-item>
-  </ion-col>
-  </ion-row>
-   <ion-button type="submit" value="חפש" (click)="search()"> </ion-button>
- </ion-row>
- 
+    <ion-list>
+        <form>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label>בחר רכב:</ion-label>
+                            <ion-input type="number" [(ngModel)]="request.carCode" name="carCode"> </ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label>תאריך התחלה</ion-label>
+                            <ion-datetime type="ion-datetime" display-format="MMM DD" picker-format="MMM DD" [(ngModel)]="request.startDateForRequest" name="startDate"></ion-datetime>
+                        </ion-item>
+                    </ion-col>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label> תאריך סיום
+                            </ion-label>
+                            <ion-datetime type="ion-datetime" display-format="MMM DD" picker-format="MMM DD" [(ngModel)]="request.endDateForRequest" name="endDate"></ion-datetime>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label position="floating">משעה</ion-label>
+                            <ion-datetime type="ion-datetime" display-format="h:mm A" picker-format="h:mm A" value="1990-02-19T07:43Z" [(ngModel)]="request.startHourForRequest" name="startTime"></ion-datetime>
+                        </ion-item>
+                    </ion-col>
+
+                    <ion-col>
+                        <ion-item>
+                            <ion-label position="floating">עד שעה</ion-label>
+                            <ion-datetime type="ion-datetime" display-format="h:mm A" picker-format="h:mm A" value="1990-02-19T07:43Z" [(ngModel)]="request.endHourForRequest" name="endTime"></ion-datetime>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item>
+                            <ion-label position="floating">כתובת</ion-label>
+                            <input ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handlestartingPointChange($event)" name="startingPoint" placeholder="" />
+                        </ion-item>
+                    </ion-col>
+                    <ion-row>
+                        <ion-col>
+                            <ion-item>
+
+
+                                <ion-label>ימים בשבוע</ion-label>
+                                <ion-select name="days" multiple [(ngModel)]="request.days" okText="Okay" cancelText="Dismiss">
+                                    <ion-select-option value="1">ראשון</ion-select-option>
+                                    <ion-select-option value="2">שני</ion-select-option>
+                                    <ion-select-option value="3">שלישי</ion-select-option>
+                                    <ion-select-option value="4">רביעי</ion-select-option>
+                                    <ion-select-option value="5">חמישי</ion-select-option>
+                                    <ion-select-option value="6">שישי</ion-select-option>
+                                    <ion-select-option value="7">שבת</ion-select-option>
+                                </ion-select>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <ion-button type="submit" value="חפש" (click)="search()"> </ion-button>
+                </ion-row>
