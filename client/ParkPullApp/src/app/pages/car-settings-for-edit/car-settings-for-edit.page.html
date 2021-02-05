@@ -15,7 +15,13 @@
         </ion-toolbar>
     </ion-header>
     <ion-content class="etzuv">
-
+        <!-- <ion-select>
+            <ion-select-option *ngFor="let code of car" value="{{code.carNumber}}" (click)="checked($event.target.value)">{{code.carNumber}}</ion-select-option>
+        </ion-select> -->
+        <select (change)="checked($event.target.value)">
+            <option >בחר רכב</option>
+            <option *ngFor="let code of car"  value="{{code.carCode}}">{{code.carNumber}}</option>
+        </select>
         <form [formGroup]="carSettingsForm" novalidate (ngSubmit)="update(carSettingsForm)">
             <ion-grid>
                 <ion-row color="primary" justify-content-center>
@@ -26,24 +32,24 @@
                         <div padding>
 
                             <ion-item>
-                                <ion-input formControlName="Length" name="Length" type="text" placeholder="אורך" value="{{this.car?.carLength}}"></ion-input>
+                                <ion-input formControlName="Length" name="Length" type="text" placeholder="אורך" value="{{this.carByCode?.carLength}}"></ion-input>
 
                             </ion-item>
                             <ion-item>
-                                <ion-input formControlName="Width" name="width" type="text" placeholder="רוחב" value="{{this.car?.carWidth}}"></ion-input>
+                                <ion-input formControlName="Width" name="width" type="text" placeholder="רוחב" value="{{this.carByCode?.carWidth}}"></ion-input>
                             </ion-item>
 
                             <ion-item>
-                                <ion-input formControlName="Height" name="height" type="text" placeholder="גובה" value="{{this.car?.carHeight}}"></ion-input>
+                                <ion-input formControlName="Height" name="height" type="text" placeholder="גובה" value="{{this.carByCode?.carHeight}}"></ion-input>
                             </ion-item>
                             <ion-item>
-                                <ion-input formControlName="Weight" name="Weight" type="text" placeholder="משקל" value="{{this.car?.carWeight}}"></ion-input>
+                                <ion-input formControlName="Weight" name="Weight" type="text" placeholder="משקל" value="{{this.carByCode?.carWeight}}"></ion-input>
                             </ion-item>
 
 
-                            <ion-item>
-                                <!-- <ion-input name="carType" type="" placeholder="your@email.com" ngModel  ></ion-input> -->
-
+                            <!-- <ion-item>
+                                 <ion-input name="carType" type="" placeholder="your@email.com" ngModel  ></ion-input> -->
+                            <!-- 
                                 <ion-label>סוג הרכב</ion-label>
                                 <ion-select value="brown" okText="Okay" cancelText="Dismiss" formControlName="carType">
 
@@ -54,10 +60,10 @@
                                     <ion-select-option value="motorcycle">קטנועית</ion-select-option>
                                 </ion-select>
 
-                            </ion-item>
+                            </ion-item> -->
 
                             <ion-item>
-                                <ion-input formControlName="carNumber" name="CarNumber" type="text" placeholder="מספר רכב" value="{{this.car?.carNumber}}"></ion-input>
+                                <ion-input formControlName="carNumber" name="CarNumber" type="text" placeholder="מספר רכב" value="{{this.carByCode?.carNumber}}"></ion-input>
                             </ion-item>
                         </div>
                         <br>

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    class RentalBL
+   public  class RentalBL
     {
+
+
     }
 }

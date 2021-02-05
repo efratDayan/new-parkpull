@@ -14,12 +14,12 @@ namespace BL.Converters
         {
             return new User
             {
-                userCode = User.userCode,
-                Name = User.Name,
-                Tell = User.Tell,
+                userCode = User.id,
+                Name = User.username,
+             
                 Email = User.Email,
-                Password = User.Password,
-                userAdress = User.userAdress
+                Password = User.password,
+              
             };
         }
 
@@ -28,12 +28,12 @@ namespace BL.Converters
         {
             return new UserDTO
             {
-                userCode = User.userCode,
-                Name = User.Name,
-                Tell = User.Tell,
+                id = User.userCode,
+                username = User.Name,
+              
                 Email = User.Email,
-                Password = User.Password,
-                userAdress = User.userAdress
+                password = User.Password,
+              
             };
         }
     }

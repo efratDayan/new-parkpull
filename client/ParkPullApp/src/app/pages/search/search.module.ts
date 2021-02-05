@@ -12,8 +12,10 @@ import {GooglePlaceModule} from 'ngx-google-places-autocomplete'
 import {NgxLoadingModule, ngxLoadingAnimationTypes} from 'ngx-loading'
 
 
+
 @NgModule({
   imports: [
+    
             GooglePlaceModule,
     NgxLoadingModule.forRoot({
       animationType: ngxLoadingAnimationTypes.threeBounce,

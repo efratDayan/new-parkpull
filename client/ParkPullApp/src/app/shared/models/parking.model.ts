@@ -1,12 +1,11 @@
 export interface Parking {
- userCode :number,
- parkingCode:number
- widthPoint :number
- lengthPoint:number
- parkWidth :number
- parkLength :number
- parkHeight :number
- parkWeight :number
- price :number
+    userCode: number,
+    parkingCode: number
+    adress: string
+    parkWidth: number
+    parkLength: number
+    parkHeight: number
+    parkWeight: number
+    price: number
 
 }

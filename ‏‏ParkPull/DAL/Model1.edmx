@@ -83,13 +83,12 @@
           </Key>
           <Property Name="parkingCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="userCode" Type="int" Nullable="false" />
-          <Property Name="widthPoint" Type="float" />
-          <Property Name="lengthPoint" Type="float" />
           <Property Name="parkWidth" Type="float" />
           <Property Name="parkLength" Type="float" />
           <Property Name="parkHeight" Type="float" />
           <Property Name="parkWeight" Type="float" />
           <Property Name="price" Type="float" />
+          <Property Name="adress" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="RentalOffersForParking">
           <Key>
@@ -109,12 +108,11 @@
           <Property Name="rentedParkingCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="offerCode" Type="int" Nullable="false" />
           <Property Name="requestCode" Type="int" Nullable="false" />
-          <Property Name="dayOfWeekForOffer" Type="int" Nullable="false" />
-          <Property Name="dayOfWeekForRequest" Type="int" Nullable="false" />
           <Property Name="startDateForRequest" Type="date" Nullable="false" />
           <Property Name="endDateForRequest" Type="date" />
           <Property Name="startHourForRequest" Type="time" Precision="7" Nullable="false" />
           <Property Name="endHourForRequest" Type="time" Precision="7" />
+          <Property Name="UserCode" Type="int" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -122,10 +120,8 @@
           </Key>
           <Property Name="userCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Tell" Type="nvarchar" MaxLength="10" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="12" Nullable="false" />
-          <Property Name="userAdress" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK__Cars__userCode__267ABA7A">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
@@ -283,6 +279,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__rentedPar__UserC__5AEE82B9">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="rentedParkings" Type="Self.rentedParkings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="userCode" />
+            </Principal>
+            <Dependent Role="rentedParkings">
+              <PropertyRef Name="UserCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="parkPullDBModelStoreContainer">
           <EntitySet Name="Cars" EntityType="Self.Cars" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="daysAweekForOffer" EntityType="Self.daysAweekForOffer" Schema="dbo" store:Type="Tables" />
@@ -346,6 +354,10 @@
           </AssociationSet>
           <AssociationSet Name="FK__rentedPar__reque__4CA06362" Association="Self.FK__rentedPar__reque__4CA06362">
             <End Role="daysAweekForRequest" EntitySet="daysAweekForRequest" />
+            <End Role="rentedParkings" EntitySet="rentedParkings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__rentedPar__UserC__5AEE82B9" Association="Self.FK__rentedPar__UserC__5AEE82B9">
+            <End Role="Users" EntitySet="Users" />
             <End Role="rentedParkings" EntitySet="rentedParkings" />
           </AssociationSet>
         </EntityContainer>
@@ -427,8 +439,6 @@
           </Key>
           <Property Name="parkingCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="userCode" Type="Int32" Nullable="false" />
-          <Property Name="widthPoint" Type="Double" />
-          <Property Name="lengthPoint" Type="Double" />
           <Property Name="parkWidth" Type="Double" />
           <Property Name="parkLength" Type="Double" />
           <Property Name="parkHeight" Type="Double" />
@@ -437,6 +447,7 @@
           <NavigationProperty Name="User" Relationship="Self.FK__Parkings__userCo__2B3F6F97" FromRole="Parkings" ToRole="Users" />
           <NavigationProperty Name="RentalOffersForParkings" Relationship="Self.FK__RentalOff__parki__571DF1D5" FromRole="Parkings" ToRole="RentalOffersForParking" />
           <NavigationProperty Name="Extensions" Relationship="Self.ExtensionsForParking" FromRole="Parkings" ToRole="Extensions" />
+          <Property Name="adress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="RentalOffersForParking">
           <Key>
@@ -458,8 +469,6 @@
           <Property Name="rentedParkingCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="offerCode" Type="Int32" Nullable="false" />
           <Property Name="requestCode" Type="Int32" Nullable="false" />
-          <Property Name="dayOfWeekForOffer" Type="Int32" Nullable="false" />
-          <Property Name="dayOfWeekForRequest" Type="Int32" Nullable="false" />
           <Property Name="startDateForRequest" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="endDateForRequest" Type="DateTime" Precision="0" />
           <Property Name="startHourForRequest" Type="Time" Nullable="false" Precision="7" />
@@ -467,6 +476,8 @@
           <NavigationProperty Name="daysAweekForOffer" Relationship="Self.FK__rentedPar__offer__76969D2E" FromRole="rentedParkings" ToRole="daysAweekForOffer" />
           <NavigationProperty Name="daysAweekForRequest" Relationship="Self.FK__rentedPar__reque__75A278F5" FromRole="rentedParkings" ToRole="daysAweekForRequest" />
           <NavigationProperty Name="Opinions" Relationship="Self.FK__Opinions__rented__797309D9" FromRole="rentedParkings" ToRole="Opinions" />
+          <Property Name="UserCode" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="parkPullDBModel.FK__rentedPar__UserC__5AEE82B9" FromRole="rentedParking" ToRole="User" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -474,12 +485,11 @@
           </Key>
           <Property Name="userCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Tell" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="userAdress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Cars" Relationship="Self.FK__Cars__userCode__3F466844" FromRole="Users" ToRole="Cars" />
           <NavigationProperty Name="Parkings" Relationship="Self.FK__Parkings__userCo__2B3F6F97" FromRole="Users" ToRole="Parkings" />
+          <NavigationProperty Name="rentedParkings" Relationship="parkPullDBModel.FK__rentedPar__UserC__5AEE82B9" FromRole="User" ToRole="rentedParking" />
         </EntityType>
         <Association Name="FK__Cars__userCode__3F466844">
           <End Role="Users" Type="Self.User" Multiplicity="1" />
@@ -652,7 +662,23 @@
             <End Role="Extensions" EntitySet="Extensions" />
             <End Role="parkingRentalRequests" EntitySet="parkingRentalRequests" />
           </AssociationSet>
+          <AssociationSet Name="FK__rentedPar__UserC__5AEE82B9" Association="parkPullDBModel.FK__rentedPar__UserC__5AEE82B9">
+            <End Role="User" EntitySet="Users" />
+            <End Role="rentedParking" EntitySet="rentedParkings" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK__rentedPar__UserC__5AEE82B9">
+          <End Type="parkPullDBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="parkPullDBModel.rentedParking" Role="rentedParking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userCode" />
+            </Principal>
+            <Dependent Role="rentedParking">
+              <PropertyRef Name="UserCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -724,10 +750,9 @@
           <EntitySetMapping Name="Parkings">
             <EntityTypeMapping TypeName="parkPullDBModel.Parking">
               <MappingFragment StoreEntitySet="Parkings">
+                <ScalarProperty Name="adress" ColumnName="adress" />
                 <ScalarProperty Name="parkingCode" ColumnName="parkingCode" />
                 <ScalarProperty Name="userCode" ColumnName="userCode" />
-                <ScalarProperty Name="widthPoint" ColumnName="widthPoint" />
-                <ScalarProperty Name="lengthPoint" ColumnName="lengthPoint" />
                 <ScalarProperty Name="parkWidth" ColumnName="parkWidth" />
                 <ScalarProperty Name="parkLength" ColumnName="parkLength" />
                 <ScalarProperty Name="parkHeight" ColumnName="parkHeight" />
@@ -751,11 +776,10 @@
           <EntitySetMapping Name="rentedParkings">
             <EntityTypeMapping TypeName="parkPullDBModel.rentedParking">
               <MappingFragment StoreEntitySet="rentedParkings">
+                <ScalarProperty Name="UserCode" ColumnName="UserCode" />
                 <ScalarProperty Name="rentedParkingCode" ColumnName="rentedParkingCode" />
                 <ScalarProperty Name="offerCode" ColumnName="offerCode" />
                 <ScalarProperty Name="requestCode" ColumnName="requestCode" />
-                <ScalarProperty Name="dayOfWeekForOffer" ColumnName="dayOfWeekForOffer" />
-                <ScalarProperty Name="dayOfWeekForRequest" ColumnName="dayOfWeekForRequest" />
                 <ScalarProperty Name="startDateForRequest" ColumnName="startDateForRequest" />
                 <ScalarProperty Name="endDateForRequest" ColumnName="endDateForRequest" />
                 <ScalarProperty Name="startHourForRequest" ColumnName="startHourForRequest" />
@@ -768,10 +792,8 @@
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="userCode" ColumnName="userCode" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Tell" ColumnName="Tell" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="userAdress" ColumnName="userAdress" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

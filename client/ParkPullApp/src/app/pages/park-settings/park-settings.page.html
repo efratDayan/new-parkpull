@@ -41,11 +41,17 @@
                                     <ion-col align-self-center size-md="4" size-lg="3" size-xs="10"> -->
 
                         <ion-label>מיקום החניה</ion-label>
-                        <ion-item>
+                        <!-- <ion-item>
                             <ion-input formControlName="LengthPoint" name="LengthPoint" type="text" placeholder="נקודת אורך" ngModel required></ion-input>
                         </ion-item>
                         <ion-item>
                             <ion-input formControlName="widthPoint" name="widthPoint" type="text" placeholder="נקודת רוחב" ngModel required></ion-input>
+                        </ion-item> -->
+                        <ion-item>
+                            <ion-item>
+                                <ion-label position="floating">כתובת</ion-label>
+                                <input ngx-google-places-autocomplete #placesRef="ngx-places" formControlName="adress" />
+                            </ion-item>
                         </ion-item>
 
                         <!-- </ion-col>

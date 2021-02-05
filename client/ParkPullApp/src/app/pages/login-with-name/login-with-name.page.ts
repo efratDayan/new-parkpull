@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DataService } from 'src/app/shared/services/data.service';
 import { UserService } from 'src/app/shared/services/user.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { UserService } from 'src/app/shared/services/user.service';
 export class LoginWithNamePage implements OnInit {
 LoginForm:FormGroup;
 correctPassword;
-  constructor(private userService:UserService) { }
+  constructor(private userService:UserService,private data: DataService) { }
 
   ngOnInit() {
     this.LoginForm = new FormGroup({
@@ -19,6 +20,12 @@ correctPassword;
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
      
     });
+  }
+
+  login(){
+    this.userService.login(this.LoginForm.controls.name.value).subscribe(res=>{
+      this.data.userCode=res
+    })
   }
 
   findUser(password:string){

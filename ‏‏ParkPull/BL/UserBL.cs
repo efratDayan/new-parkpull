@@ -16,11 +16,11 @@ namespace BL
         {
             User newUser = new User()
             {
-               Name=user.Name,
-               Tell=user.Tell,
+               Name=user.username,
+              
                Email=user.Email,
-               Password=user.Password,
-               userAdress=user.userAdress
+               Password=user.password,
+               
             };
             DB.Users.Add(newUser);
             DB.SaveChanges();
@@ -30,8 +30,7 @@ namespace BL
         public int AddParkToDB(ParkingDTO park)
         {
             Parking parking = new Parking()
-            { widthPoint=park.widthPoint,
-                lengthPoint=park.lengthPoint,
+            { adress=park.adress,
                 parkHeight=park.parkHeight,
                 parkLength=park.parkLength,
                 parkWeight=park.parkWeight,
@@ -44,14 +43,24 @@ namespace BL
             RentalOffersForParkingDTO rentalOffersForParking = new RentalOffersForParkingDTO()
             {
                 parkingCode = parking.parkingCode,
-                startDateForOffer = new DateTime(),
-                startHourForOffer=new TimeSpan()
-            
+                startDateForOffer = DateTime.Now,
+                startHourForOffer= DateTime.Now.TimeOfDay,
+
             };
             DB.RentalOffersForParkings.Add(RentalOffersForParkingConverter.ConvertRentalOffersForParkingToDAL(rentalOffersForParking));
+            DB.SaveChanges();
             return parking.userCode;
         }
 
+     
+
+        public ParkingDTO GetParkDetailsForRent(int parkCode)
+        {
+            var p = (from park in DB.Parkings
+                     where park.parkingCode == parkCode
+                     select park).First();
+            return ParkingConverter.ConvertParkingToDTO(p);
+        }
 
         public bool FindUser(string name, string password)
         {
@@ -72,29 +81,57 @@ namespace BL
                 return false;
         }
 
-        public ParkingDTO GetParkDetails(int userCode)
+        public int GetUserCode(string name)
         {
-            var park = (from p in DB.Parkings
-                       where p.userCode == userCode
-                       select p).First();
+            var code = (from u in DB.Users
+                        where u.Name == name
+                        select u.userCode).First();
 
-            var Park = new ParkingDTO()
+            return code;
+        }
+
+        public bool FindUserForRegister(string name)
+        {
+
+            var users = (from u in DB.Users
+                         select u).ToList();
+            foreach (var u in users)
             {
-               parkingCode = park.parkingCode,
-               lengthPoint=(double)park.lengthPoint,
-               parkHeight= (double)park.parkHeight,
-               parkLength=(double)park.parkLength,
-               parkWeight=(double)park.parkWeight,
-               parkWidth=(double)park.parkWidth,
-               price=(double)park.price,
-               widthPoint=(double)park.widthPoint,
-               
-               
+                if (u.Name == name)
+                {
+                   
+                        return true;
+                }
+            }
 
 
 
-            };
+            return false;
+        }
+
+        public List<ParkingDTO> GetParkDetails(int userCode)
+        {
+            List<ParkingDTO> Park = new List<ParkingDTO>();
+            var park = (from p in DB.Parkings
+                        where p.userCode == userCode
+                        select p).ToList();
+
+            foreach (var item in park )
+            {
+                Park.Add(ParkingConverter.ConvertParkingToDTO(item));
+            }
             return Park;
+           
+       
+        }
+
+        public UserDTO LoadUserDetails(int userCode)
+        {
+           
+            var user = (from u in DB.Users
+                        where u.userCode == userCode
+                        select u).First();
+            return Converters.UserConverter.ConvertUserToDTO(user);
         }
 
         public bool UpdatePark(ParkingDTO parking)
@@ -106,17 +143,83 @@ namespace BL
             if (park != null)
             {
                 park.parkingCode = parking.parkingCode;
-               park.lengthPoint = parking.lengthPoint;
+                park.adress = parking.adress;
                park.parkHeight =parking.parkHeight;
                park.parkLength = parking.parkLength;
                park.parkWeight = parking.parkWeight;
                park.parkWidth =parking.parkWidth;
                park.price = parking.price;
-               park.widthPoint = parking.widthPoint;
 
+                DB.SaveChanges();
                 return true;
             }
             else return false;
+        }
+
+        public bool UpdateUser(UserDTO user)
+        {
+            var User = (from u in DB.Users
+                        where u.userCode == user.id
+                        select u).First();
+
+            if (User != null)
+            {
+                User.Name = user.username;
+                User.Password = user.password;
+                User.Email = user.Email;
+
+                DB.SaveChanges();
+                return true;
+            }
+            else return false;
+        }
+
+        public double? RentPark(RentalOption parking)
+        {
+            try {  var request = (from r in DB.parkingRentalRequests
+                           where r.requestCode == parking.requestCode
+                           select r).First();
+            var offer = (from o in DB.RentalOffersForParkings
+                         where o.offerCode == parking.offerCode
+                         select o).First();
+             
+           
+                var rent = new rentedParking()
+            {
+                offerCode = offer.offerCode,
+                //dayOfWeekForOffer = 1,
+                //dayOfWeekForRequest = 1,
+                endDateForRequest =request.endDateForRequest,
+               endHourForRequest=request.endHourForRequest,
+               //rentedParkingCode=parking.parkingCode,
+           UserCode=parking.userCode,
+                    daysAweekForRequest =new daysAweekForRequest()
+                    {
+                        requestCode=request.requestCode,
+                        dayOfWeekForRequest=1,
+                        
+                    },
+                    daysAweekForOffer =new daysAweekForOffer()
+                    {
+                        offerCode=offer.offerCode,
+                        dayOfWeekForOffer=1
+                    },
+
+               requestCode=request.requestCode,
+               startDateForRequest=request.startDateForRequest,
+               startHourForRequest=request.startHourForRequest,
+
+            };
+
+                var price = ((request.endHourForRequest.Value.TotalSeconds - request.startHourForRequest.TotalSeconds) * offer.Parking.price)/60;
+                DB.rentedParkings.Add(rent);
+                DB.SaveChanges();
+                return price; }
+            catch(Exception e)
+            {
+                throw e;
+            }
+           
         }
     }
 }

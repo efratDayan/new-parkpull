@@ -4,21 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { LoginWithNamePageRoutingModule } from './login-with-name-routing.module';
+import { UpdateUserPageRoutingModule } from './update-user-routing.module';
 
-import { LoginWithNamePage } from './login-with-name.page';
-
-
+import { UpdateUserPage } from './update-user.page';
 
 @NgModule({
   imports: [
-
+    ReactiveFormsModule,
     CommonModule,
     FormsModule,
     IonicModule,
-    LoginWithNamePageRoutingModule,
-    ReactiveFormsModule
+    UpdateUserPageRoutingModule
   ],
-  declarations: [LoginWithNamePage]
+  declarations: [UpdateUserPage]
 })
-export class LoginWithNamePageModule {}
+export class UpdateUserPageModule {}

@@ -34,15 +34,16 @@ namespace BL
                 foreach (var offer in db.RentalOffersForParkings)
                 {
                     if (offer.startDateForOffer <= request.startDateForRequest &&
-                        offer.endDateForOffer >= request.endDateForRequest &&
-                        offer.startHourForOffer <= request.startHourForRequest &&
-                        offer.endHourForOffer >= request.endHourForRequest &&
-                        fitToPark(request.Car, offer.Parking) &&
-                        fitToDay(offer.daysAweekForOffers.ToList(), request.daysAweekForRequests.ToList())
+                        //offer.endDateForOffer >= request.endDateForRequest &&
+                        //offer.startHourForOffer <= request.startHourForRequest &&
+                        //offer.endHourForOffer >= request.endHourForRequest &&
+                        fitToPark(request.Car, offer.Parking) 
+                        //fitToDay(offer.daysAweekForOffers.ToList(), request.daysAweekForRequests.ToList())
                         )
                     {
                         bool isOptional = true;
                       var catchedDays =  offer.daysAweekForOffers.Where(d => DayContains(d.dayOfWeekForOffer, request.daysAweekForRequests.ToList())).SelectMany(d=>d.rentedParkings);
+                        if(catchedDays!=null)
                         foreach (var catchedDay in catchedDays)
                         {
                             if (catchedDay.startDateForRequest > request.endDateForRequest)
@@ -61,10 +62,14 @@ namespace BL
                         if (isOptional)
                         {
                             Models.RentalOption option = new RentalOption();
+                            option.offerCode = offer.offerCode;
+                            option.requestCode = request.requestCode;
+                            option.price = offer.Parking.price;
+                            option.Location = offer.Parking.adress;
                             option.parkingCode = offer.parkingCode;
                             option.userCode = offer.Parking.userCode;
-                            option.Location = GooglePlaces.ReverseGeoCoder(offer.Parking.lengthPoint.Value, offer.Parking.widthPoint.Value);
-                            option.WalkingMinutes = GooglePlaces.GetWalkingDuration(request.requestAdress, option.Location);
+                            //option.Location = GooglePlaces.ReverseGeoCoder(offer.Parking.lengthPoint.Value, offer.Parking.widthPoint.Value);
+                            option.WalkingMinutes = GooglePlaces.GetWalkingDuration(request.requestAdress,offer.Parking.adress);
                             goodOffers.Add(option);
                         }
                     }

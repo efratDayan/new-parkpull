@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/services/user.service';
 import { FormControl, Validators, ValidatorFn, FormGroup } from '@angular/forms';
 import { DataService } from 'src/app/shared/services/data.service';
+import { User } from 'src/app/shared/models/user.model';
 
 
 
@@ -17,7 +18,7 @@ export class RegisterPage implements OnInit {
 
   public registerForm: FormGroup;
   userNumber
-
+isCorrectName
   constructor(private userService: UserService, private router: Router,private data:DataService) { }
 
   ngOnInit() {
@@ -29,11 +30,23 @@ export class RegisterPage implements OnInit {
     });
   }
   register(form) {
-    if(form.valid)
-    this.userService.create(form.value)
+    if(form.valid){ 
+       const user={
+  Email:this.registerForm.controls.email.value,
+  username:this.registerForm.controls.name.value,
+  password:this.registerForm.controls.password.value
+    } as User
+    this.userService.create(user)
       .subscribe((res) => {
-        // this.data.userCode=res
+        this.data.userCode=res
         this.router.navigateByUrl('car-settings');
-      });
+      });}
+  
+  }
+
+  findUser(name:string){
+this.userService.findUserForRegister(name).subscribe(res=>{
+  this.isCorrectName=res
+})
   }
 }

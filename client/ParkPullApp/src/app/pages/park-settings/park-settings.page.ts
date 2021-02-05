@@ -19,8 +19,7 @@ export class ParkSettingsPage implements OnInit {
       width: new FormControl(),
       height: new FormControl(),
       Weight: new FormControl(),
-      LengthPoint:new FormControl(),
-      widthPoint: new FormControl(),
+      adress:new FormControl(),
       Price:new FormControl()
     });
    }
@@ -34,8 +33,7 @@ export class ParkSettingsPage implements OnInit {
  
     if(form.valid){
       const park={
-        lengthPoint:this.parkSettingsForm.controls.LengthPoint.value,
-        widthPoint:this.parkSettingsForm.controls.widthPoint.value,
+       adress:this.parkSettingsForm.controls.adress.value,
         parkWidth:this.parkSettingsForm.controls.width.value,
         parkHeight:this.parkSettingsForm.controls.height.value,
         parkLength:this.parkSettingsForm.controls.Length.value,

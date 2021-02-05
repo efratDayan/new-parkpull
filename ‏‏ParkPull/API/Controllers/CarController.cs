@@ -26,7 +26,7 @@ namespace API.Controllers
         }
         [Route("GetCarDetails")]
         [HttpGet]
-        public CarDTO GetCarDetails(int userCode)
+        public List<CarDTO> GetCarDetails(int userCode)
         {
             return carBL.GetCarDetails(userCode);
         }

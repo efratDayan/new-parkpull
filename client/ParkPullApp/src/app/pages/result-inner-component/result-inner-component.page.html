@@ -1,18 +1,14 @@
-<ion-header>
-    <ion-toolbar>
-        <ion-title>resultInnerComponent</ion-title>
-    </ion-toolbar>
-</ion-header>
+<div>
 
-<ion-content>
     <label>משקל מרבי</label>
-    <ion-input></ion-input>
+    <label>{{parking?.parkWeight}}</label>
     <label>אורך מרבי</label>
-    <ion-input></ion-input>
+    <label>{{parking?.parkLength}}</label>
     <label>גובה מרבי</label>
-    <ion-input></ion-input>
+    <label>{{parking?.parkHeight}}</label>
     <label>רוחב מרבי</label>
-    <ion-input></ion-input>
+    <label>{{parking?.parkWidth}}</label>
 
-    <ion-button class="btnForAll" style="--background: #2C388A;" size="large" routerLink="/pay-Pal"> שמור אותי </ion-button>
-</ion-content>
+    <ion-button (click)="SaveMe()">שמור אותי</ion-button>
+    <!-- <ion-button ion-item (Click)="SaveMe()" type="sub" class="btnForAll" style="--background: #2C388A;" size="large"> שמור אותי </ion-button> -->
+</div>

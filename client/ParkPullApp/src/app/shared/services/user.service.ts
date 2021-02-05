@@ -6,22 +6,24 @@ import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class UserService {
+  
+  
   constructor(private http: HttpClient) { }
 
   getAll() {
     return this.http.get<User[]>(environment.url+'user');
   }
 
-  getById(id: number) {
-      return this.http.get(environment.url+'user/' + id);
+  LoadUserDetails(userCode) {
+      return this.http.get<User>(environment.url+'user/LoadUserDetails?userCode='+userCode );
   }
 
   create(user: User) {
-    return this.http.post(environment.url+'user/AddUserToDB', user);
+    return this.http.post<number>(environment.url+'user/AddUserToDB', user);
   }
 
   update(user: User) {
-    return this.http.put(environment.url+'user/' + user.id, user);
+    return this.http.post(environment.url+'user/UpdateUser',user );
   }
 
   findUser(name:string,password:string){
@@ -29,6 +31,13 @@ export class UserService {
    .set('name', name)
    .set('password', password);
 return this.http.get(environment.url+'user/FindUser',{params:params})
+  }
+  login(name: string) {
+   return this.http.get<number>(environment.url+'user/GetUserCode?name='+name)
+  }
+
+  findUserForRegister(name: string) {
+  return this.http.get(environment.url+'user/FindUserForRegister?name='+name)
   }
 
   delete(id: number) {

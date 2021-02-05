@@ -12,17 +12,20 @@ import { AppComponent } from './app.component';
 import { UserService } from './shared/services/user.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ResultComponentPage } from './pages/result-component/result-component.page';
+import { CommonModule } from '@angular/common';
+import { LoginWithNamePage } from './pages/login-with-name/login-with-name.page';
+import { LoginPage } from './pages/login/login.page';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ResultComponentPage
-    
+  
   
   ],
   entryComponents: [],
   imports: [
-   
+    CommonModule,
     RouterModule, 
     ReactiveFormsModule,
     FormsModule,

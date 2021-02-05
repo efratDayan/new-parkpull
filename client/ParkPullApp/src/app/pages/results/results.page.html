@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>results</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <div *ngFor="let r of results">
+
+        <li>
+
+            <ion-icon name="arrow-back" *ngIf="!isShown" (click)="viewParking()"></ion-icon>
+
+            <ion-icon name="arrow-down" *ngIf="isShown" (click)="viewParking()"></ion-icon>
+            {{r|json}}
+            <app-result-component [r]="r"></app-result-component>
+            <ng-container *ngIf="isShown">
+                <ul>
+                    <app-result-inner-component [park]="r"></app-result-inner-component>
+                </ul>
+            </ng-container>
+
+        </li>
+
+    </div>
+
+</ion-content>

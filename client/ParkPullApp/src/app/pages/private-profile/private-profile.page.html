@@ -26,6 +26,8 @@
 
 <ion-content>
     <form [formGroup]="profileDetailsForm" novalidate (ngSubmit)="profileDetails(profileDetailsForm)">
+        <ion-button class="btnForAll" style="--background: #2C388A;" size="large" routerLink="/update-user"> הפרטים שלי </ion-button>
+
         <ion-button class="btnForAll" style="--background: #2C388A;" size="large" routerLink="/car-settings-for-edit"> הרכב שלי </ion-button>
 
         <ion-button class="btnForAll" style="--background: #2C388A;" size="large" routerLink="/park-settings-for-edit"> החניה שלי </ion-button>

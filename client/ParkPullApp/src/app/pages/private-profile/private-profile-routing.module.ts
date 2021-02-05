@@ -8,6 +8,7 @@ import { HistoryPage } from '../history/history.page';
 import { ParkSettingsForEditPage } from '../park-settings-for-edit/park-settings-for-edit.page';
 import { RegisterPage } from '../register/register.page';
 import { RegistrationSuccessPage } from '../registration-success/registration-success.page';
+import { UpdateUserPage } from '../update-user/update-user.page';
 
 import { PrivateProfilePage } from './private-profile.page';
 
@@ -35,6 +36,10 @@ const routes: Routes = [
   {
     path: 'history',
     component: HistoryPage
+  },
+  {
+    path: 'update-user',
+    component: UpdateUserPage
   }
 ];
 

@@ -40,9 +40,23 @@ namespace API.Controllers
             return UserBL.FindUser(name, password);
         }
 
+        [Route("FindUserForRegister")]
+        [HttpGet]
+        public bool FindUserForRegister(string name)
+        {
+            return UserBL.FindUserForRegister(name);
+        }
+
+
+        [Route("LoadUserDetails")]
+        [HttpGet]
+        public UserDTO LoadUserDetails(int userCode)
+        {
+            return UserBL.LoadUserDetails(userCode);
+        }
         [Route("GetParkDetails")]
         [HttpGet]
-        public ParkingDTO GetParkDetails(int userCode)
+        public List<ParkingDTO> GetParkDetails(int userCode)
         {
             return UserBL.GetParkDetails(userCode);
         }
@@ -53,5 +67,29 @@ namespace API.Controllers
             return UserBL.UpdatePark(parking);
         }
 
+        [Route("UpdateUser")]
+        [HttpPost]
+        public bool UpdateUser(UserDTO user)
+        {
+            return UserBL.UpdateUser(user);
+        }
+        [Route("GetParkDetailsForRent")]
+        [HttpGet]
+        public ParkingDTO GetParkDetailsForRent(int parkCode)
+        {
+            return UserBL.GetParkDetailsForRent(parkCode);
+        }
+
+        [Route("RentPark")]
+        [HttpPost]
+        public double? RentPark(RentalOption parking)
+        {
+            return UserBL.RentPark(parking);
+        }
+
+       public int GetUserCode(string name)
+        {
+            return UserBL.GetUserCode(name);
+        }
     }
 }

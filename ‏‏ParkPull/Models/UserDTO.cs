@@ -8,11 +8,12 @@ namespace Models
 {
     public class UserDTO
     {
-        public int userCode { get; set; }
-        public string Name { get; set; }
-        public string Tell { get; set; }
+        public int id { get; set; }
+        
+        public string username { get; set; }
+     
         public string Email { get; set; }
-        public string Password { get; set; }
-        public string userAdress { get; set; }
+        public string password { get; set; }
+        
     }
 }

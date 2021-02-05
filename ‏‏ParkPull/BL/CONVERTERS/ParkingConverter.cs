@@ -17,8 +17,7 @@ namespace BL
                 parkingCode = Parking.parkingCode,
                 userCode = Parking.userCode,
              
-                widthPoint = Parking.widthPoint,
-                lengthPoint = Parking.lengthPoint,
+              adress=Parking.adress,
                 parkHeight = Parking.parkHeight,
                 parkLength = Parking.parkLength,
                 parkWeight = Parking.parkWeight,
@@ -34,8 +33,7 @@ namespace BL
                 parkingCode = Parking.parkingCode,
                 userCode = Parking.userCode,
                 
-                widthPoint = (double)Parking.widthPoint,
-                lengthPoint = (double)Parking.lengthPoint,
+              adress=Parking.adress,
                 parkHeight = (double)Parking.parkHeight,
                 parkLength = (double)Parking.parkLength,
                 parkWeight = (double)Parking.parkWeight,

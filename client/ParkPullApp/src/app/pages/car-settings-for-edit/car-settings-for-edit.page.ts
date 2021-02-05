@@ -11,60 +11,73 @@ import { DataService } from 'src/app/shared/services/data.service';
   styleUrls: ['./car-settings-for-edit.page.scss'],
 })
 export class CarSettingsForEditPage implements OnInit {
-public carSettingsForm: FormGroup;
-car
-  constructor(private carService: CarService, private router:Router,private data:DataService) { 
+  public carSettingsForm: FormGroup;
+  car: Car[]
+  carByCode: Car
+  constructor(private carService: CarService, private router: Router, private data: DataService) {
     this.carSettingsForm = new FormGroup({
       carNumber: new FormControl('',),
-      carType: new FormControl('', ),
+  
       Length: new FormControl('',),
-      Width: new FormControl('', ),
-      Weight:new FormControl('',   ),
+      Width: new FormControl('',),
+      Weight: new FormControl('',),
       Height: new FormControl()
     });
-    
+
   }
 
   ngOnInit() {
     this.loadCarDetails();
   }
 
-  loadCarDetails(){
+
+  checked(carCode) {
+    this.car.forEach(cars => {
+      if (cars.carCode == carCode) {
+        
+        this.carByCode = cars
+        // this.ngOnInit()
+      }
+
+    });
+
+  }
+  loadCarDetails() {
     this.carService.getCarDetails(this.data.userCode).subscribe((res) => {
-     this.car=res ;
+      this.car = res;
     });
   }
 
   update(form) {
-   
-      const car={
-        carCode:this.car.carCode,
-        carNumber: this.carSettingsForm.controls.carNumber.value,
-        carLength: this.carSettingsForm.controls.Length.value,
-        carWidth: this.carSettingsForm.controls.Width.value,
-        carHeight: this.carSettingsForm.controls.Height.value,
-        carWeight: this.carSettingsForm.controls.Weight.value,
-        userCode: this.data.userCode
 
-      }as Car
-       this.carService.updateCar(car)
+    const car = {
+      carCode: this.carByCode.carCode,
+      carNumber: this.carSettingsForm.controls.carNumber.value,
+      carLength: this.carSettingsForm.controls.Length.value,
+      carWidth: this.carSettingsForm.controls.Width.value,
+      carHeight: this.carSettingsForm.controls.Height.value,
+      carWeight: this.carSettingsForm.controls.Weight.value,
+      userCode: this.data.userCode
+
+    } as Car
+    this.carService.updateCar(car)
       .subscribe((res) => {
-        if(!res)
-        alert('עדכון הפרטים נכשל')
+        if (!res)
+          alert('עדכון הפרטים נכשל')
         else
-        this.router.navigateByUrl('private-profile');
+          this.router.navigateByUrl('private-profile');
       });
-  
-   
+
+
   }
 }
 
 
 
 
-  
 
- 
+
+
 
 
 

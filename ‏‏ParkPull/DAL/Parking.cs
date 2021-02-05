@@ -23,13 +23,12 @@ namespace DAL
     
         public int parkingCode { get; set; }
         public int userCode { get; set; }
-        public Nullable<double> widthPoint { get; set; }
-        public Nullable<double> lengthPoint { get; set; }
         public Nullable<double> parkWidth { get; set; }
         public Nullable<double> parkLength { get; set; }
         public Nullable<double> parkHeight { get; set; }
         public Nullable<double> parkWeight { get; set; }
         public Nullable<double> price { get; set; }
+        public string adress { get; set; }
     
         public virtual User User { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

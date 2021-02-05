@@ -20,7 +20,7 @@ export class CarSettingsPage implements OnInit {
   constructor(private carService: CarService, private router:Router,private data:DataService) { 
     this.carSettingsForm = new FormGroup({
       carNumber: new FormControl('', [Validators.required, Validators.maxLength(10),Validators.minLength(6)]),
-      carType: new FormControl('', [Validators.required]),
+      // carType: new FormControl('', [Validators.required]),
       Length: new FormControl('', [Validators.required, Validators.max(20000 ),Validators.min(269.5 )]),
       Width: new FormControl('', [Validators.required, Validators.max(4000 ), Validators.min(0.20 )]),
       Weight:new FormControl('', [Validators.required, Validators.max(40000  ), Validators.min(100  )]),

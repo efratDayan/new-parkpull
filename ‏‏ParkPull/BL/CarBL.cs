@@ -27,26 +27,38 @@ namespace BL
             return newCar.carCode;
         }
 
-        public CarDTO GetCarDetails(int userCode)
+        public List<CarDTO> GetCarDetails(int userCode)
         {
+            List<CarDTO> Car = new List<CarDTO>();
             var car = (from c in DB.Cars
                        where c.userCode == userCode
-                       select c).First();
-            var Car = new CarDTO()
+                       select c).ToList();
+            foreach(var item in car)
             {
-                carCode=car.carCode,
-                carWidth=(double)car.carWidth,
-                carHeight=(double)car.carHeight,
-                carLength= (double)car.carLength,
-                carNumber=car.carNumber,
-                carWeight=(double)car.carWeight
-
-
-            };
+                Car.Add(Converters.CarConverter.ConvertCarToDTO(item));
+            }
             return Car;
         }
+        //public CarDTO GetCarDetails(int userCode)
+        //{
+        //    var car = (from c in DB.Cars
+        //               where c.userCode == userCode
+        //               select c).First();
+        //    var Car = new CarDTO()
+        //    {
+        //        carCode = car.carCode,
+        //        carWidth = (double)car.carWidth,
+        //        carHeight = (double)car.carHeight,
+        //        carLength = (double)car.carLength,
+        //        carNumber = car.carNumber,
+        //        carWeight = (double)car.carWeight
 
-       public bool UpdateCar(CarDTO carDTO)
+
+        //    };
+        //    return Car;
+        //}
+
+        public bool UpdateCar(CarDTO carDTO)
         {
             var car = (from c in DB.Cars
                        where carDTO.carCode == c.carCode
@@ -59,7 +71,7 @@ namespace BL
                 car.carNumber = carDTO.carNumber;
                 car.carWeight = carDTO.carWeight;
                 car.carWidth = carDTO.carWidth;
-                
+                DB.SaveChanges();
                 return true;
             }
             else return false;

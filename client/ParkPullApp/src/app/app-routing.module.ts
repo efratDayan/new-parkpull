@@ -25,7 +25,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
   {
     path: 'home',
@@ -39,10 +39,7 @@ const routes: Routes = [
     path: 'private-profile',
     loadChildren: () => import('./pages/private-profile/private-profile.module').then( m => m.PrivateProfilePageModule)
   },
-  {
-    path: 'result/:res',
-    loadChildren: () => import('./pages/result/result.module').then( m => m.ResultPageModule)
-  },
+
   {
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
@@ -50,7 +47,8 @@ const routes: Routes = [
   {
     path: 'login-with-name',
     loadChildren: () => import('./pages/login-with-name/login-with-name.module').then( m => m.LoginWithNamePageModule)
-  },  {
+  },
+  {
     path: 'car-settings-for-edit',
     loadChildren: () => import('./pages/car-settings-for-edit/car-settings-for-edit.module').then( m => m.CarSettingsForEditPageModule)
   },
@@ -78,6 +76,20 @@ const routes: Routes = [
     path: 'result-inner-component',
     loadChildren: () => import('./pages/result-inner-component/result-inner-component.module').then( m => m.ResultInnerComponentPageModule)
   },
+  {
+    path: 'update-user',
+    loadChildren: () => import('./pages/update-user/update-user.module').then( m => m.UpdateUserPageModule)
+  },
+  {
+    path: 'results',
+    loadChildren: () => import('./pages/results/results.module').then( m => m.ResultsPageModule)
+  },  {
+    path: 'pay-pal',
+    loadChildren: () => import('./pages/pay-pal/pay-pal.module').then( m => m.PayPalPageModule)
+  },
+
+
+
 
 
 

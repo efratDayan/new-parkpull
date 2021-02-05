@@ -12,6 +12,7 @@ import { ParkingService } from 'src/app/shared/services/parking.service';
 })
 export class ParkSettingsForEditPage implements OnInit {
   park:Parking
+  parks:Parking[]
   public parkSettingsForm: FormGroup;
 
   constructor(private parkService:ParkingService, private data: DataService, private router: Router) {
@@ -20,8 +21,7 @@ export class ParkSettingsForEditPage implements OnInit {
       width: new FormControl(),
       height: new FormControl(),
       Weight: new FormControl(),
-      LengthPoint:new FormControl(),
-      widthPoint: new FormControl(),
+     adress:new FormControl(),
       Price:new FormControl()
     });
    }
@@ -30,12 +30,22 @@ export class ParkSettingsForEditPage implements OnInit {
   ngOnInit() {
     this.loadParkDetails()
   }
+  checked(parkingCode) {
+    this.parks.forEach(p => {
+      if (p.parkingCode == parkingCode) {
+        
+        this.park = p
+        // this.ngOnInit()
+      }
 
+    });
+
+  }
 
 
   loadParkDetails(){
     this.parkService.getParkDetails(this.data.userCode).subscribe((res) => {
-     this.park=res ;
+     this.parks=res ;
     });
   }
 
@@ -45,8 +55,7 @@ export class ParkSettingsForEditPage implements OnInit {
     
       const park={
         parkingCode:this.park.parkingCode,
-        lengthPoint:this.parkSettingsForm.controls.LengthPoint.value,
-        widthPoint:this.parkSettingsForm.controls.widthPoint.value,
+       adress:this.parkSettingsForm.controls.adress.value,
         parkWidth:this.parkSettingsForm.controls.width.value,
         parkHeight:this.parkSettingsForm.controls.height.value,
         parkLength:this.parkSettingsForm.controls.Length.value,
